@@ -34,6 +34,7 @@ export function* getDataToUpdate({ payload }) {
 }
 
 export function* setDataToUpdate({ payload }) {
+  if (!payload) return;
   const { entregador } = payload.entregadores;
   yield put(getDataSuccess(entregador));
 }
