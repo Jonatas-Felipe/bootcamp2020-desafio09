@@ -20,6 +20,7 @@ import {
   ContentNull,
 } from '~/components/Table/styles';
 import Acoes from '~/components/Acoes';
+import Paginacao from '~/components/Paginacao';
 import Loading from '~/components/Loading';
 
 export default function Encomendas() {
@@ -86,7 +87,14 @@ export default function Encomendas() {
   }
 
   function handlePage(action) {
-    const pagina = action === 'next' ? page + 1 : page - 1;
+    let pagina;
+
+    if (action > 0) {
+      pagina = action;
+    } else {
+      pagina = action === 'next' ? page + 1 : page - 1;
+    }
+
     setPage(pagina);
     loadProblemas(pagina);
   }
@@ -100,7 +108,7 @@ export default function Encomendas() {
         <>
           {problemas.length ? (
             <>
-              <Table>
+              <Table widthProps={width}>
                 <Thead>
                   <Th>Encomenda</Th>
                   <Th>Problema</Th>
@@ -142,23 +150,7 @@ export default function Encomendas() {
                 </Visualizar>
               </VisualizarContainer>
 
-              <PaginationContainer>
-                <ButtonPage
-                  type="button"
-                  disabled={page === 1}
-                  onClick={() => handlePage('back')}
-                >
-                  <MdArrowBack color="#fff" size={20} />
-                </ButtonPage>
-                <span>{page}</span>
-                <ButtonPage
-                  type="button"
-                  disabled={page === pages}
-                  onClick={() => handlePage('next')}
-                >
-                  <MdArrowForward color="#fff" size={20} />
-                </ButtonPage>
-              </PaginationContainer>
+              <Paginacao page={page} pages={pages} handlePage={handlePage} />
             </>
           ) : (
             <ContentNull>

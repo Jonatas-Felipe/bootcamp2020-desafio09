@@ -210,23 +210,23 @@ export default function Encomendas() {
           {width > 798 && 'CADASTRAR'}
         </CadastrarButton>
       </Content>
+      <ButtonGroup widthProps={width} buttonActive={buttonFiltro}>
+        <button type="button" onClick={() => handleClickButtonFiltro()}>
+          Todas entregas
+        </button>
+        <button
+          type="button"
+          onClick={() => handleClickButtonFiltro('problema')}
+        >
+          Com Problemas
+        </button>
+      </ButtonGroup>
 
       {!loading ? (
         <>
           {encomendas.length ? (
             <>
-              <ButtonGroup widthProps={width} buttonActive={buttonFiltro}>
-                <button type="button" onClick={() => handleClickButtonFiltro()}>
-                  Todas entregas
-                </button>
-                <button
-                  type="button"
-                  onClick={() => handleClickButtonFiltro('problema')}
-                >
-                  Com Problemas
-                </button>
-              </ButtonGroup>
-              <Table>
+              <Table widthProps={width}>
                 <Thead>
                   <Th>ID</Th>
                   <Th>Destinatário</Th>

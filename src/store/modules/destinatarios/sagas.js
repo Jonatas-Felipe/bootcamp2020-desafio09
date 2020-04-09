@@ -13,8 +13,14 @@ export function* registerRecipients({ payload }) {
     toast.success('Destinatário cadastrado com sucesso!');
 
     history.push('/destinatarios');
-  } catch (error) {
-    toast.error('Houve um erro ao cadastrar destinatário, verifique os dados.');
+  } catch (err) {
+    const { response } = err;
+
+    const error =
+      response.status === '500'
+        ? 'Verifique sua conexão com a internet'
+        : response.data.error;
+    toast.error(error);
     yield put(recipientsFailure());
   }
 }

@@ -13,8 +13,14 @@ export function* registerCouriers({ payload }) {
     toast.success('Entregador cadastrado com sucesso!');
 
     history.push('/entregadores');
-  } catch (error) {
-    toast.error('Houve um erro ao cadastrar entregador, verifique os dados.');
+  } catch (err) {
+    const { response } = err;
+
+    const error =
+      response.status === '500'
+        ? 'Verifique sua conexão com a internet'
+        : response.data.error;
+    toast.error(error);
     yield put(couriersFailure());
   }
 }

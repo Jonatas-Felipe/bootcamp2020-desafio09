@@ -137,7 +137,7 @@ export default function Encomendas() {
         <>
           {entregadores.length ? (
             <>
-              <Table>
+              <Table widthProps={width}>
                 <Thead>
                   <Th>ID</Th>
                   <Th>Foto</Th>

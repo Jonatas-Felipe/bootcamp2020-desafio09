@@ -108,7 +108,11 @@ export const ButtonGroup = styled.div`
 export const Table = styled.div`
   width: 100%;
   margin: 35px 0 10px;
-  overflow-x: auto;
+  ${props =>
+    props.widthProps < 798 &&
+    css`
+      overflow-x: auto;
+    `};
 `;
 
 export const Thead = styled.div`

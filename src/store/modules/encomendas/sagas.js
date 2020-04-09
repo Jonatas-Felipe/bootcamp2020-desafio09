@@ -13,8 +13,14 @@ export function* registerOrders({ payload }) {
     toast.success('Encomenda cadastrada com sucesso!');
 
     history.push('/entregas');
-  } catch (error) {
-    toast.error('Houve um erro ao cadastrar encomenda, verifique os dados.');
+  } catch (err) {
+    const { response } = err;
+
+    const error =
+      response.status === '500'
+        ? 'Verifique sua conexão com a internet'
+        : response.data.error;
+    toast.error(error);
     yield put(ordersFailure());
   }
 }

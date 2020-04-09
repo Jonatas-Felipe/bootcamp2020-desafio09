@@ -22,8 +22,14 @@ export function* signIn({ payload }) {
     yield put(signInSuccess(token, user));
 
     history.push('/encomendas');
-  } catch (error) {
-    toast.error('Falha na verificação verifique seus dados');
+  } catch (err) {
+    const { response } = err;
+
+    const error =
+      response.status === '500'
+        ? 'Verifique sua conexão com a internet'
+        : response.data.error;
+    toast.error(error);
     yield put(signFailure());
   }
 }
