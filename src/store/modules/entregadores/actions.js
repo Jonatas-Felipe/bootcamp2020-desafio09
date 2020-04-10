@@ -19,10 +19,10 @@ export function getDataSuccess(entregador) {
   };
 }
 
-export function updateCouriers(id, id_avatar, name, email) {
+export function updateCouriers(id, avatar_id, name, email) {
   return {
     type: '@couriers/UPDATE_REQUEST',
-    payload: { id, id_avatar, name, email },
+    payload: { id, avatar_id, name, email },
   };
 }
 

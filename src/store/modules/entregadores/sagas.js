@@ -47,14 +47,16 @@ export function* setDataToUpdate({ payload }) {
 
 export function* updateCouriers({ payload }) {
   try {
-    const { id, id_avatar, name, email } = payload;
+    const { id, avatar_id, name, email } = payload;
     const data = {
-      id_avatar,
+      avatar_id,
       name,
       email,
     };
 
-    yield call(api.put, `/deliveryman/${id}`, data);
+    const response = yield call(api.put, `/deliveryman/${id}`, data);
+
+    console.tron.log(response);
 
     toast.success('Entregador alterado com sucesso!');
 

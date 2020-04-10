@@ -1,5 +1,4 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { MdArrowBack, MdArrowForward } from 'react-icons/md';
 import { GiFlatTire } from 'react-icons/gi';
 import Swal from 'sweetalert2';
 import { toast } from 'react-toastify';
@@ -15,8 +14,6 @@ import {
   Td,
   VisualizarContainer,
   Visualizar,
-  PaginationContainer,
-  ButtonPage,
   ContentNull,
 } from '~/components/Table/styles';
 import Acoes from '~/components/Acoes';
