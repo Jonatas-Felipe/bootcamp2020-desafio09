@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
+import { useLocation } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 
 import { signOut } from '~/store/modules/auth/actions';
@@ -8,6 +9,7 @@ import { Container, Content, LinkComponent } from './styles';
 import logo from '~/assets/fastfeet-logo.png';
 
 export default function Header() {
+  const location = useLocation();
   const dispatch = useDispatch();
 
   const [page, setPage] = useState('');
@@ -22,10 +24,10 @@ export default function Header() {
   }
 
   useEffect(() => {
-    const url = window.location.pathname.substring(1).split('/')[0];
+    const url = location.pathname.substring(1);
     handleClickLink(url);
     setWidth(ref.current.scrollWidth);
-  }, []);
+  }, [location.pathname]);
 
   function handleClick() {
     dispatch(signOut());
